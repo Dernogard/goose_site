@@ -382,6 +382,245 @@
             flex-wrap: wrap;
         }
 
+        /* ================= APPLICATION FORM ================= */
+        .application-form {
+            padding: 6rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .application-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 159, 28, 0.1), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(46, 196, 182, 0.1), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+
+        .form-header h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-dark), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--accent-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s ease;
+        }
+
+        .form-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .goose-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .required {
+            color: #E53E3E;
+            font-weight: 800;
+        }
+
+        .optional {
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .textarea-wrapper {
+            align-items: flex-start;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-gray);
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .textarea-wrapper i {
+            top: 1rem;
+        }
+
+        .input-wrapper input,
+        .input-wrapper select,
+        .input-wrapper textarea {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            transition: var(--transition);
+            background: var(--white);
+            outline: none;
+        }
+
+        .input-wrapper textarea {
+            resize: vertical;
+            min-height: 120px;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus,
+        .input-wrapper textarea:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-wrapper input:focus + i,
+        .input-wrapper select:focus + i,
+        .input-wrapper textarea:focus + i {
+            color: var(--primary-orange);
+            transform: scale(1.1);
+        }
+
+        .error-message {
+            font-size: 0.8rem;
+            color: #E53E3E;
+            min-height: 1.2rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-orange), var(--accent-green));
+            color: var(--white);
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(255, 159, 28, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 250px;
+            justify-content: center;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 159, 28, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        .btn-loading {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-note {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.4;
+        }
+
         /* ================= MEDIA QUERIES (PC) ================= */
         @media (min-width: 768px) {
             .hero h1 {
@@ -404,6 +643,45 @@
             .card.vip:hover {
                 transform: scale(1.05) translateY(-10px);
             }
+
+            /* Форма на больших экранах */
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-card {
+                padding: 4rem;
+            }
+
+            .btn-submit {
+                min-width: 300px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .application-form {
+                padding: 8rem 2rem;
+            }
+
+            .form-card {
+                padding: 5rem;
+            }
+        }
+
+        /* Дополнительные стили для мобильных устройств */
+        @media (max-width: 480px) {
+            .form-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .btn-submit {
+                padding: 1.25rem 2rem;
+                min-width: 100%;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -422,7 +700,7 @@
         <section class="hero fade-in-element">
             <div class="hero-emoji">🪿</div>
             <h1>Познай дзен через<br>гусиное гоготание</h1>
-            <p>VIP сервис организации тактильных встреч с элитными гусями. Снимем стресс, подарим адреналин и проверим ваши рефлексы на прочность.</p>
+            <p>Премиальный сервис организации тактильных встреч с элитными гусями. Снимем стресс, подарим адреналин и проверим ваши рефлексы на прочность.</p>
             <a href="#pricing" class="btn-primary">
                 Выбрать гуся <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -485,6 +763,85 @@
 
             </div>
         </section>
+
+        <!-- ФОРМА ЗАЯВКИ -->
+        <section class="application-form" id="application">
+            <div class="container">
+                <div class="form-header fade-in-element">
+                    <div class="form-emoji">🪿</div>
+                    <h2>Готовы к перу-приключению?</h2>
+                    <p>Оставьте заявку и получите консультацию по выбору идеального гуся для вашего первого щекочущего опыта</p>
+                </div>
+                
+                <div class="form-card fade-in-element" style="transition-delay: 0.2s;">
+                    <form id="goose-form" class="goose-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Ваше имя <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" id="name" name="name" placeholder="Как к вам обращаться?" required>
+                                </div>
+                                <span class="error-message" id="name-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input type="email" id="email" name="email" placeholder="Ваш email для связи" required>
+                                </div>
+                                <span class="error-message" id="email-error"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Телефон <span class="optional">(необязательно)</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+                                </div>
+                                <span class="error-message" id="phone-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="plan">Выберите тариф <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-gem"></i>
+                                    <select id="plan" name="plan" required>
+                                        <option value="">Выберите вариант</option>
+                                        <option value="feather">🪶 Робкое перышко - 1 500 ₽</option>
+                                        <option value="double">🦆💨 Двойной форсаж - 4 990 ₽</option>
+                                        <option value="vip">👑 VIP Альфа-Щипок - 14 900 ₽</option>
+                                    </select>
+                                </div>
+                                <span class="error-message" id="plan-error"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="message">Расскажите о своих ожиданиях</label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <i class="fa-solid fa-comment"></i>
+                                <textarea id="message" name="message" placeholder="Что вы хотите получить от встречи с гусем? Есть ли особые пожелания?" rows="4"></textarea>
+                            </div>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">
+                                <span class="btn-text">Отправить заявку</span>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fa-solid fa-spinner fa-spin"></i> Отправляем...
+                                </span>
+                            </button>
+                            <p class="form-note">Мы свяжемся с вами в течение 24 часов. Гуси не кусаются, но могут гоготать громко!</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- ПОДВАЛ -->
@@ -528,6 +885,186 @@
             setTimeout(() => {
                 document.querySelector('.hero').classList.add('visible');
             }, 100);
+
+            // Валидация и обработка формы
+            const form = document.getElementById('goose-form');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const planInput = document.getElementById('plan');
+            const messageInput = document.getElementById('message');
+            
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+            const phoneError = document.getElementById('phone-error');
+            const planError = document.getElementById('plan-error');
+            const messageError = document.getElementById('message-error');
+            
+            const submitBtn = document.querySelector('.btn-submit');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+
+            // Функции валидации
+            function validateName() {
+                const value = nameInput.value.trim();
+                if (value.length < 2) {
+                    showError(nameError, 'Имя должно содержать не менее 2 символов');
+                    return false;
+                } else {
+                    hideError(nameError);
+                    return true;
+                }
+            }
+
+            function validateEmail() {
+                const value = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showError(emailError, 'Введите корректный email адрес');
+                    return false;
+                } else {
+                    hideError(emailError);
+                    return true;
+                }
+            }
+
+            function validatePhone() {
+                const value = phoneInput.value.trim();
+                if (value && !/^\+?[\d\s\-\(\)]{7,}$/.test(value)) {
+                    showError(phoneError, 'Введите корректный номер телефона');
+                    return false;
+                } else {
+                    hideError(phoneError);
+                    return true;
+                }
+            }
+
+            function validatePlan() {
+                const value = planInput.value;
+                if (!value) {
+                    showError(planError, 'Выберите тариф');
+                    return false;
+                } else {
+                    hideError(planError);
+                    return true;
+                }
+            }
+
+            function validateMessage() {
+                const value = messageInput.value.trim();
+                if (value && value.length < 10) {
+                    showError(messageError, 'Сообщение должно содержать не менее 10 символов');
+                    return false;
+                } else {
+                    hideError(messageError);
+                    return true;
+                }
+            }
+
+            function showError(element, message) {
+                element.textContent = message;
+                element.style.display = 'block';
+                element.parentElement.classList.add('error-state');
+            }
+
+            function hideError(element) {
+                element.textContent = '';
+                element.style.display = 'none';
+                element.parentElement.classList.remove('error-state');
+            }
+
+            // Обработчики событий для валидации в реальном времени
+            nameInput.addEventListener('blur', validateName);
+            emailInput.addEventListener('blur', validateEmail);
+            phoneInput.addEventListener('blur', validatePhone);
+            planInput.addEventListener('change', validatePlan);
+            messageInput.addEventListener('blur', validateMessage);
+
+            // Обработка отправки формы
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Сброс ошибок
+                [nameError, emailError, phoneError, planError, messageError].forEach(el => {
+                    el.style.display = 'none';
+                    el.parentElement.classList.remove('error-state');
+                });
+
+                // Валидация всех полей
+                const isNameValid = validateName();
+                const isEmailValid = validateEmail();
+                const isPhoneValid = validatePhone();
+                const isPlanValid = validatePlan();
+                const isMessageValid = validateMessage();
+
+                // Если есть ошибки, не отправляем форму
+                if (!isNameValid || !isEmailValid || !isPlanValid) {
+                    return;
+                }
+
+                // Подготовка данных для отправки
+                const formData = {
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    phone: phoneInput.value.trim(),
+                    plan: planInput.value,
+                    message: messageInput.value.trim()
+                };
+
+                // Анимация кнопки отправки
+                submitBtn.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'flex';
+
+                try {
+                    // Имитация отправки формы (в реальном проекте здесь будет API запрос)
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+
+                    // Успешная отправка
+                    showSuccess();
+                    
+                    // Сброс формы через 3 секунды
+                    setTimeout(() => {
+                        form.reset();
+                        hideSuccess();
+                        submitBtn.disabled = false;
+                        btnText.style.display = 'inline-flex';
+                        btnLoading.style.display = 'none';
+                    }, 3000);
+
+                } catch (error) {
+                    // Ошибка отправки
+                    showError(planError, 'Произошла ошибка при отправке. Попробуйте позже.');
+                    submitBtn.disabled = false;
+                    btnText.style.display = 'inline-flex';
+                    btnLoading.style.display = 'none';
+                }
+            });
+
+            // Функции для отображения успеха
+            function showSuccess() {
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; background: #F0FBF9; border-radius: 12px; border: 2px solid #2EC4B6;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                        <h3 style="color: #2B2D42; margin-bottom: 0.5rem; font-size: 1.5rem;">Заявка отправлена!</h3>
+                        <p style="color: #8D99AE; margin-bottom: 1rem;">Спасибо за ваш интерес к нашему клубу!</p>
+                        <p style="color: #2EC4B6; font-weight: 700;">Гуси уже готовятся к вашей встрече!</p>
+                    </div>
+                `;
+                
+                const formCard = document.querySelector('.form-card');
+                formCard.innerHTML = '';
+                formCard.appendChild(successMessage);
+            }
+
+            function hideSuccess() {
+                const successMessage = document.querySelector('.success-message');
+                if (successMessage) {
+                    successMessage.remove();
+                }
+            }
         });
     </script>
 </body>
