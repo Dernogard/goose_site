@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goose Ticklers Club | Клуб любителей пощекотать гусей</title>
+    
+    <!-- Подключение шрифтов Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Подключение иконок FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= BASE STYLES ================= */
+        :root {
+            --primary-orange: #FF9F1C; /* Цвет гусиных лапок */
+            --primary-orange-hover: #F48C06;
+            --accent-green: #2EC4B6; /* Премиальный изумрудный */
+            --bg-color: #F0FBF9; /* Светлый зелено-голубой фон */
+            --text-dark: #2B2D42;
+            --text-gray: #8D99AE;
+            --white: #FFFFFF;
+            --card-shadow: 0 15px 35px rgba(43, 45, 66, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top left, #E0F7FA, transparent 50%),
+                              radial-gradient(circle at bottom right, #FFF3E0, transparent 50%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .logo span {
+            display: inline-block;
+        }
+
+        .btn-header {
+            background: transparent;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-header:hover {
+            background: var(--primary-orange);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 159, 28, 0.3);
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 1rem 2rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-emoji {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--text-dark), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(255, 159, 28, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-orange-hover);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 159, 28, 0.5);
+        }
+
+        /* ================= PRICING SECTION ================= */
+        .pricing {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            border-color: rgba(255, 159, 28, 0.3);
+        }
+
+        /* Центральная карточка (VIP / Хит продаж) */
+        .card.vip {
+            border: 2px solid var(--accent-green);
+            background: linear-gradient(to bottom, #ffffff, #f0fbf9);
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-green);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(46, 196, 182, 0.4);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            color: var(--primary-orange);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .card-desc {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .features-list {
+            margin-bottom: 2.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .features-list li i {
+            color: var(--accent-green);
+            margin-top: 0.25rem;
+        }
+
+        .btn-card {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid #E2E8F0;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-dark);
+            background: var(--text-dark);
+            color: var(--white);
+        }
+
+        .card.vip .btn-card {
+            background: var(--accent-green);
+            color: var(--white);
+        }
+
+        .card.vip .btn-card:hover {
+            background: #239b90;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 196, 182, 0.3);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem 2rem 1rem;
+            position: relative;
+        }
+
+        .footer-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .contacts {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            color: #CBD5E0;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        /* ================= MEDIA QUERIES (PC) ================= */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .hero p {
+                font-size: 1.25rem;
+            }
+
+            .cards-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .card.vip {
+                transform: scale(1.05);
+                z-index: 10;
+            }
+
+            .card.vip:hover {
+                transform: scale(1.05) translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <div class="logo">
+            <span style="animation: float 2s infinite ease-in-out;">🪿</span> GTC
+        </div>
+        <a href="#pricing" class="btn-header">Тарифы</a>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <main>
+        <section class="hero fade-in-element">
+            <div class="hero-emoji">🪿</div>
+            <h1>Познай дзен через<br>гусиное гоготание</h1>
+            <p>Премиальный сервис организации тактильных встреч с элитными гусями. Снимем стресс, подарим адреналин и проверим ваши рефлексы на прочность.</p>
+            <a href="#pricing" class="btn-primary">
+                Выбрать гуся <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </section>
+
+        <!-- БЛОК ТАРИФОВ -->
+        <section class="pricing" id="pricing">
+            <div class="pricing-header fade-in-element">
+                <h2>Каталог впечатлений</h2>
+                <p style="color: var(--text-gray); font-size: 1.1rem;">Выберите свой уровень безумия и тактильности</p>
+            </div>
+
+            <div class="cards-container">
+                
+                <!-- Тариф 1 -->
+                <div class="card fade-in-element" style="transition-delay: 0.1s;">
+                    <div class="card-icon">🪶</div>
+                    <h3 class="card-title">Робкое перышко</h3>
+                    <div class="card-price">1 500 ₽ <span>/ сеанс</span></div>
+                    <p class="card-desc">Идеально для новичков. Аккуратное щекотание спящего гуся без риска для ваших пальцев.</p>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Шелковая кисточка в аренду</li>
+                        <li><i class="fa-solid fa-check"></i> 1 крепко спящий гусь</li>
+                        <li><i class="fa-solid fa-check"></i> Пульс клиента до 90 уд/мин</li>
+                        <li><i class="fa-solid fa-xmark" style="color:#E53E3E;"></i> Без права на резкие движения</li>
+                    </ul>
+                    <button class="btn-card btn-outline">Заказать</button>
+                </div>
+
+                <!-- Тариф 2 (VIP) -->
+                <div class="card vip fade-in-element" style="transition-delay: 0.3s;">
+                    <div class="badge">Выбор смельчаков</div>
+                    <div class="card-icon">🦆💨</div>
+                    <h3 class="card-title">Двойной форсаж</h3>
+                    <div class="card-price">4 990 ₽ <span>/ сеанс</span></div>
+                    <p class="card-desc">Для опытных искателей острых ощущений. Ручное щекотание сразу двух бодрствующих птиц.</p>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Два очень бодрых гуся</li>
+                        <li><i class="fa-solid fa-check"></i> Щекотание голыми руками</li>
+                        <li><i class="fa-solid fa-check"></i> Легкий фитнес (убегание)</li>
+                        <li><i class="fa-solid fa-check"></i> Видеосъемка ваших криков</li>
+                    </ul>
+                    <button class="btn-card">Взять гусей за рога</button>
+                </div>
+
+                <!-- Тариф 3 -->
+                <div class="card fade-in-element" style="transition-delay: 0.5s;">
+                    <div class="card-icon">👑</div>
+                    <h3 class="card-title">VIP Альфа-Щипок</h3>
+                    <div class="card-price">14 900 ₽ <span>/ сеанс</span></div>
+                    <p class="card-desc">Полный экстрим для настоящих безумцев. Встреча один на один с вожаком стаи.</p>
+                    <ul class="features-list">
+                        <li><i class="fa-solid fa-check"></i> Встреча с гусем «Геннадием»</li>
+                        <li><i class="fa-solid fa-check"></i> Аренда защитного костюма</li>
+                        <li><i class="fa-solid fa-check"></i> Флакон зеленки в подарок</li>
+                        <li><i class="fa-solid fa-check"></i> Почетная грамота выжившего</li>
+                    </ul>
+                    <button class="btn-card btn-outline">Рискнуть здоровьем</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="fade-in-element">
+        <div class="footer-emoji" style="animation: float 4s infinite ease-in-out;">🦢</div>
+        <div class="footer-logo">Goose Ticklers Club</div>
+        <p class="copyright">«Ни один гусь не пострадал, но многие были глубоко возмущены вашим поведением» © 2024</p>
+        <div class="contacts">
+            <span><i class="fa-solid fa-phone"></i> 8 (800) GAGA-GAA</span>
+            <span><i class="fa-solid fa-envelope"></i> help@gooseticklers.ru</span>
+            <span><i class="fa-solid fa-location-dot"></i> Птицеферма №4, Ангар 2</span>
+        </div>
+    </footer>
+
+    <!-- Скрипт для плавной анимации элементов при скролле -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Настройка наблюдателя (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Элемент появляется, когда видно 15% его высоты
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Прекращаем следить после появления
+                    }
+                });
+            }, observerOptions);
+
+            // Находим все элементы с классом fade-in-element и добавляем в наблюдатель
+            const elementsToAnimate = document.querySelectorAll('.fade-in-element');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Чтобы первый экран появлялся сразу при загрузке без скролла
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('visible');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
